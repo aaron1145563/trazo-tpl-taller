@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nombre del Taller — Taller Mecánico</title>
+<meta name="description" content="Servicio mecánico de confianza. Diagnóstico, mantenimiento, frenos, suspensión y más. Cotiza por WhatsApp."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--brand:#ea580c;--brand-dark:#c2410c;--dark:#171717;--light:#fafafa;--gray:#737373;--radius:16px}
+body{font-family:'Inter',sans-serif;color:var(--dark);background:var(--light)}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(23,23,23,.95);backdrop-filter:blur(10px);padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:20px;font-weight:900;color:#fff}.logo span{color:var(--brand)}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:#aaa;font-size:13px;font-weight:600;transition:color .2s}.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--brand);color:#fff!important;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:800}
+@media(max-width:768px){.nav-links a:not(.nav-cta){display:none}}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:linear-gradient(135deg,#171717 0%,#262626 100%);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:var(--brand);opacity:.05;top:-300px;right:-200px}
+.hero h1{font-size:clamp(36px,7vw,64px);font-weight:900;line-height:1.05;margin-bottom:20px;letter-spacing:-1.5px}
+.hero h1 span{color:var(--brand)}
+.hero p{font-size:18px;color:#a3a3a3;max-width:520px;margin:0 auto 32px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 32px;border-radius:50px;font-size:15px;font-weight:800;border:none;cursor:pointer;display:inline-block;transition:all .2s}
+.btn-primary{background:var(--brand);color:#fff}.btn-primary:hover{background:var(--brand-dark);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.2)}.btn-outline:hover{border-color:var(--brand);color:var(--brand)}
+
+.section{padding:80px 24px;max-width:1100px;margin:0 auto}
+.section-tag{font-size:12px;font-weight:800;color:var(--brand);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-1px;margin-bottom:40px}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.srv-card{background:#fff;border-radius:var(--radius);padding:32px;border:1px solid #e5e5e5;transition:all .3s}
+.srv-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+.srv-icon{font-size:36px;margin-bottom:16px}
+.srv-card h3{font-size:18px;font-weight:800;margin-bottom:8px}
+.srv-card p{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* PROCESO */
+.process{background:#fff;padding:80px 24px}
+.process-inner{max-width:1100px;margin:0 auto}
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:step}
+.process-step{text-align:center;padding:32px 20px;position:relative}
+.process-step::before{counter-increment:step;content:counter(step);display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--brand);color:#fff;font-weight:900;font-size:20px;margin:0 auto 16px}
+.process-step h3{font-size:16px;font-weight:800;margin-bottom:6px}
+.process-step p{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* CONFIANZA */
+.trust{background:var(--dark);color:#fff;padding:80px 24px}
+.trust-inner{max-width:1100px;margin:0 auto}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;text-align:center}
+.trust-num{font-size:40px;font-weight:900;color:var(--brand)}
+.trust-label{font-size:13px;color:#a3a3a3;margin-top:4px}
+
+.location{padding:80px 24px;background:var(--light)}
+.location-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.map-placeholder{aspect-ratio:16/10;border-radius:var(--radius);background:#e5e5e5;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:14px}
+@media(max-width:768px){.location-inner{grid-template-columns:1fr}}
+
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:99;background:#25d366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)}.wa-float svg{width:32px;height:32px;fill:#fff}
+footer{background:var(--dark);color:#737373;text-align:center;padding:32px 24px;font-size:12px}footer a{color:var(--brand)}
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span>🔧</span> Nombre del Taller</div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">¿Cómo funciona?</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="#contacto" class="nav-cta">Cotizar</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>Tu auto en<br/><span>las mejores</span> manos</h1>
+    <p>Diagnóstico computarizado, mantenimiento preventivo y correctivo. Mecánicos certificados con experiencia.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/521234567890?text=Hola,%20necesito%20una%20cotización" class="btn btn-primary">Cotizar por WhatsApp</a>
+      <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servicios">
+  <div class="section-tag">Servicios</div>
+  <h2 class="section-title">¿Qué necesita tu auto?</h2>
+  <div class="services-grid">
+    <div class="srv-card reveal"><div class="srv-icon">🔧</div><h3>Servicio mayor y menor</h3><p>Cambio de aceite, filtros, bujías, anticongelante. Mantenimiento completo según kilometraje.</p></div>
+    <div class="srv-card reveal"><div class="srv-icon">🛞</div><h3>Frenos</h3><p>Revisión, cambio de balatas, discos, líquido de frenos. Seguridad garantizada.</p></div>
+    <div class="srv-card reveal"><div class="srv-icon">⚙️</div><h3>Suspensión y dirección</h3><p>Amortiguadores, rotulas, terminales, alineación y balanceo.</p></div>
+    <div class="srv-card reveal"><div class="srv-icon">🔋</div><h3>Sistema eléctrico</h3><p>Baterías, alternador, marcha, luces, diagnóstico por computadora.</p></div>
+    <div class="srv-card reveal"><div class="srv-icon">❄️</div><h3>Aire acondicionado</h3><p>Recarga de gas, reparación de compresor, limpieza de sistema.</p></div>
+    <div class="srv-card reveal"><div class="srv-icon">🏎️</div><h3>Motor y transmisión</h3><p>Reparación de motor, clutch, transmisión automática y estándar.</p></div>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="process-inner">
+    <div class="section-tag" style="text-align:center">¿Cómo funciona?</div>
+    <h2 class="section-title" style="text-align:center">Fácil y sin sorpresas</h2>
+    <div class="process-grid">
+      <div class="process-step reveal"><h3>Cotiza</h3><p>Mándanos un WhatsApp con lo que le pasa a tu auto. Te damos un presupuesto sin compromiso.</p></div>
+      <div class="process-step reveal"><h3>Diagnóstico</h3><p>Traes tu auto, lo revisamos a fondo y te explicamos exactamente qué necesita.</p></div>
+      <div class="process-step reveal"><h3>Reparación</h3><p>Con tu autorización, hacemos el trabajo. Te mantenemos informado en cada paso.</p></div>
+      <div class="process-step reveal"><h3>Entrega</h3><p>Tu auto listo con garantía en mano de obra y refacciones. Sin letras chiquitas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-inner">
+    <div class="section-tag" style="text-align:center">Confianza</div>
+    <h2 class="section-title" style="text-align:center;color:#fff">Nos respaldan los números</h2>
+    <div class="trust-grid">
+      <div class="trust-item reveal"><div class="trust-num">+15</div><div class="trust-label">Años de experiencia</div></div>
+      <div class="trust-item reveal"><div class="trust-num">+8,000</div><div class="trust-label">Autos reparados</div></div>
+      <div class="trust-item reveal"><div class="trust-num">97%</div><div class="trust-label">Clientes satisfechos</div></div>
+      <div class="trust-item reveal"><div class="trust-num">Garantía</div><div class="trust-label">En todas las reparaciones</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="ubicacion">
+  <div class="location-inner">
+    <div>
+      <div class="section-tag">Encuéntranos</div>
+      <h2 class="section-title">Ubicación</h2>
+      <p style="color:var(--gray);line-height:1.8;margin-bottom:20px">
+        📍 Blvd. Ejemplo #567, Col. Industrial<br>Ciudad, Estado, CP 01234<br><br>
+        📞 55 1234 5678<br>🕐 Lun-Vie 8:00-18:00 · Sáb 9:00-14:00
+      </p>
+      <a href="https://wa.me/521234567890?text=Hola,%20necesito%20llevar%20mi%20auto" class="btn btn-primary" id="contacto">Agendar cita</a>
+    </div>
+    <div class="map-placeholder">📍 Mapa de Google aquí</div>
+  </div>
+</section>
+
+<a class="wa-float" href="https://wa.me/521234567890" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 2a10 10 0 00-8.493 15.262L2 22l4.875-1.476A10 10 0 1012 2z"/></svg>
+</a>
+
+<footer>
+  <p>© 2026 Nombre del Taller · Todos los derechos reservados</p>
+  <p style="margin-top:8px">Sitio web por <a href="https://aaron1145563.github.io/trazo-web-landing/" target="_blank">Trazo Web Studio</a></p>
+</footer>
+
+<script>
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
