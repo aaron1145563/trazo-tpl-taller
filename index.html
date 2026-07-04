@@ -69,7 +69,7 @@ footer{background:var(--dark);color:#737373;text-align:center;padding:32px 24px;
 <body>
 
 <nav>
-  <div class="logo"><span>🔧</span> Nombre del Taller</div>
+  <div class="logo"><span>🔧</span> <span data-f="business_name">Nombre del Taller</span></div>
   <div class="nav-links">
     <a href="#servicios">Servicios</a>
     <a href="#proceso">¿Cómo funciona?</a>
@@ -80,10 +80,10 @@ footer{background:var(--dark);color:#737373;text-align:center;padding:32px 24px;
 
 <section class="hero">
   <div>
-    <h1>Tu auto en<br/><span>las mejores</span> manos</h1>
-    <p>Diagnóstico computarizado, mantenimiento preventivo y correctivo. Mecánicos certificados con experiencia.</p>
+    <h1 data-f-html="hero_title_html">Tu auto en<br/><span>las mejores</span> manos</h1>
+    <p data-f="hero_subtitle">Diagnóstico computarizado, mantenimiento preventivo y correctivo. Mecánicos certificados con experiencia.</p>
     <div class="hero-btns">
-      <a href="https://wa.me/521234567890?text=Hola,%20necesito%20una%20cotización" class="btn btn-primary">Cotizar por WhatsApp</a>
+      <a href="https://wa.me/521234567890?text=Hola,%20necesito%20una%20cotización" class="btn btn-primary wa-link" data-wa-msg="Hola, necesito una cotización">Cotizar por WhatsApp</a>
       <a href="#servicios" class="btn btn-outline">Ver servicios</a>
     </div>
   </div>
@@ -92,7 +92,7 @@ footer{background:var(--dark);color:#737373;text-align:center;padding:32px 24px;
 <section class="section" id="servicios">
   <div class="section-tag">Servicios</div>
   <h2 class="section-title">¿Qué necesita tu auto?</h2>
-  <div class="services-grid">
+  <div class="services-grid" id="servicesGrid">
     <div class="srv-card reveal"><div class="srv-icon">🔧</div><h3>Servicio mayor y menor</h3><p>Cambio de aceite, filtros, bujías, anticongelante. Mantenimiento completo según kilometraje.</p></div>
     <div class="srv-card reveal"><div class="srv-icon">🛞</div><h3>Frenos</h3><p>Revisión, cambio de balatas, discos, líquido de frenos. Seguridad garantizada.</p></div>
     <div class="srv-card reveal"><div class="srv-icon">⚙️</div><h3>Suspensión y dirección</h3><p>Amortiguadores, rotulas, terminales, alineación y balanceo.</p></div>
@@ -134,27 +134,66 @@ footer{background:var(--dark);color:#737373;text-align:center;padding:32px 24px;
       <div class="section-tag">Encuéntranos</div>
       <h2 class="section-title">Ubicación</h2>
       <p style="color:var(--gray);line-height:1.8;margin-bottom:20px">
-        📍 Blvd. Ejemplo #567, Col. Industrial<br>Ciudad, Estado, CP 01234<br><br>
-        📞 55 1234 5678<br>🕐 Lun-Vie 8:00-18:00 · Sáb 9:00-14:00
+        📍 <span data-f="address">Blvd. Ejemplo #567, Col. Industrial, Ciudad, Estado, CP 01234</span><br><br>
+        📞 <span data-f="phone_display">55 1234 5678</span><br>🕐 <span data-f="hours_text">Lun-Vie 8:00-18:00 · Sáb 9:00-14:00</span>
       </p>
-      <a href="https://wa.me/521234567890?text=Hola,%20necesito%20llevar%20mi%20auto" class="btn btn-primary" id="contacto">Agendar cita</a>
+      <a href="https://wa.me/521234567890?text=Hola,%20necesito%20llevar%20mi%20auto" class="btn btn-primary wa-link" data-wa-msg="Hola, necesito llevar mi auto" id="contacto">Agendar cita</a>
     </div>
     <div class="map-placeholder">📍 Mapa de Google aquí</div>
   </div>
 </section>
 
-<a class="wa-float" href="https://wa.me/521234567890" target="_blank">
+<a class="wa-float wa-link" data-wa-msg="Hola" href="https://wa.me/521234567890" target="_blank">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 2a10 10 0 00-8.493 15.262L2 22l4.875-1.476A10 10 0 1012 2z"/></svg>
 </a>
 
 <footer>
-  <p>© 2026 Nombre del Taller · Todos los derechos reservados</p>
+  <p>© 2026 <span data-f="business_name">Nombre del Taller</span> · Todos los derechos reservados</p>
   <p style="margin-top:8px">Sitio web por <a href="https://aaron1145563.github.io/trazo-web-landing/" target="_blank">Trazo Web Studio</a></p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const SUPABASE_URL='https://rqjsvehqdbgfzjsoqeto.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxanN2ZWhxZGJnZnpqc29xZXRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxNzkzMDMsImV4cCI6MjA5Nzc1NTMwM30.C4S3QuCCo3-X2SSscBBbkL2Y0b9NjlyWE2ErbhZdrRg';
+
+function waLink(el,phone){
+  const msg=el.getAttribute('data-wa-msg')||'Hola';
+  el.href='https://wa.me/'+phone+'?text='+encodeURIComponent(msg);
+}
+
+function applyContent(content){
+  document.querySelectorAll('[data-f]').forEach(el=>{
+    const key=el.getAttribute('data-f');
+    if(content[key]!==undefined) el.textContent=content[key];
+  });
+  document.querySelectorAll('[data-f-html]').forEach(el=>{
+    const key=el.getAttribute('data-f-html');
+    if(content[key]!==undefined) el.innerHTML=content[key];
+  });
+  if(content.whatsapp){
+    document.querySelectorAll('.wa-link').forEach(el=>waLink(el,content.whatsapp));
+  }
+  if(Array.isArray(content.items) && content.items.length){
+    const grid=document.getElementById('servicesGrid');
+    grid.innerHTML=content.items.map(it=>`<div class="srv-card reveal visible"><div class="srv-icon">${it.icon||'🔧'}</div><h3>${it.name}</h3><p>${it.desc||''}</p></div>`).join('');
+  }
+}
+
+(function loadClientContent(){
+  const params=new URLSearchParams(window.location.search);
+  const clientId=params.get('c');
+  if(!clientId) return;
+  const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  sb.from('site_content').select('content').eq('client_id',clientId).maybeSingle()
+    .then(({data,error})=>{
+      if(error||!data||!data.content) return;
+      applyContent(data.content);
+    });
+})();
 </script>
 </body>
 </html>
